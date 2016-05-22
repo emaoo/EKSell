@@ -1,6 +1,7 @@
 package com.eksell.eksell.eksell;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,34 +31,46 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 
     View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-    Button button = (Button) view.findViewById(R.id.loginButton);
+    Button loginButton = (Button) view.findViewById(R.id.loginButton);
     usernameField = (EditText) view.findViewById(R.id.usernameField);
     passwordField = (EditText) view.findViewById(R.id.passwordField);
+    Button registerButton = (Button) view.findViewById(R.id.regButton);
 
-            button.setOnClickListener(new View.OnClickListener() {
+
+    loginButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+        public void onClick(View v)
+      {
+          String username = usernameField.getText().toString();
+          String password = passwordField.getText().toString();
+
+          Backendless.UserService.login(username, password, new AsyncCallback<BackendlessUser>() {
               @Override
-                public void onClick(View v)
-              {
-                  String username = usernameField.getText().toString();
-                  String password = passwordField.getText().toString();
-
-                  Backendless.UserService.login(username, password, new AsyncCallback<BackendlessUser>() {
-                      @Override
-                      public void handleResponse(BackendlessUser response) {
-                          Toast.makeText(getActivity(), "You logged in", Toast.LENGTH_SHORT).show();
-                      }
-
-                      @Override
-                      public void handleFault(BackendlessFault fault) {
-                          Toast.makeText(getActivity(), "error loggin in :(", Toast.LENGTH_SHORT).show();
-                      }
-                  });
-
-
+              public void handleResponse(BackendlessUser response) {
+                  Toast.makeText(getActivity(), "You Logged In!", Toast.LENGTH_SHORT).show();
               }
 
-            }
-    );
+              @Override
+              public void handleFault(BackendlessFault fault) {
+                  Toast.makeText(getActivity(), "Error Logging In, Try Again.", Toast.LENGTH_SHORT).show();
+              }
+          });
+
+      }
+
+    });
+
+    registerButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+
+            Intent intent = new Intent(getActivity(), RegisterActivity.class);
+            startActivity(intent);
+
+        }
+
+    });
 
     return view;
 

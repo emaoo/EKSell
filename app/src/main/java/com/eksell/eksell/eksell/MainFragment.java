@@ -10,16 +10,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainMenuFragment extends Fragment {
+public class MainFragment extends Fragment {
 
 
-    public MainMenuFragment() {
+    public MainFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +26,7 @@ public class MainMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         String[] menuItems = { "Register", "Login"};
         ListView listView = (ListView) view.findViewById(R.id.mainMenu);
