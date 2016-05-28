@@ -10,71 +10,106 @@ import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.eksell.eksell.utility.BackendSettings;
+import com.eksell.eksell.utility.LoadingCallback;
+import com.eksell.eksell.utility.Validator;
+
 
 public class LoginActivity extends AppCompatActivity {
+    private static final int REGISTER_REQUEST_CODE = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState )
+    {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_login );
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        Backendless.initApp( this, BackendSettings.APPLICATION_ID,
+                BackendSettings.SECRET_KEY, BackendSettings.VERSION );
 
-        Backendless.initApp( this, BackendSettings.APP_ID, BackendSettings.SECRET_KEY, BackendSettings.VERSION );
-
-        Button loginButton = (Button) findViewById(R.id.loginButton);
-        Button registerButton = (Button) findViewById(R.id.regButton);
-
-        assert loginButton != null;
+        Button loginButton = (Button) findViewById( R.id.loginButton );
         loginButton.setOnClickListener( createLoginButtonListener() );
 
-        assert registerButton != null;
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        Button regButton = (Button) findViewById( R.id.regButton );
+        regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-                startActivity(intent);
+                startRegistrationActivity();
             }
 
         });
     }
 
-    private View.OnClickListener createLoginButtonListener() {
+    public void startRegistrationActivity()
+    {
+        Intent registrationIntent = new Intent( this, RegistrationActivity.class );
+        startActivityForResult( registrationIntent, REGISTER_REQUEST_CODE );
+    }
+
+    public View.OnClickListener createLoginButtonListener()
+    {
         return new View.OnClickListener()
         {
             @Override
             public void onClick( View v )
             {
-                EditText usernameField = (EditText) findViewById( R.id.usernameField );
+                EditText emailField = (EditText) findViewById( R.id.emailField );
                 EditText passwordField = (EditText) findViewById( R.id.passwordField );
 
-                if( isLoginValuesValid(usernameField.getText(), passwordField.getText() ) )
-                {
-                    String username = usernameField.getText().toString();
-                    String password = passwordField.getText().toString();
-                    Backendless.UserService.login(username, password, new AsyncCallback<BackendlessUser>() {
-                        @Override
-                        public void handleResponse(BackendlessUser response) {
-                            Intent mainActivityIntent = new Intent( LoginActivity.this, MainActivity.class );
-                            startActivity( mainActivityIntent );
-                            finish();
-                        }
+                CharSequence email = emailField.getText();
+                CharSequence password = passwordField.getText();
 
-                        @Override
-                        public void handleFault(BackendlessFault fault) {
-                            Toast.makeText(LoginActivity.this, "Error Logging In, Try Again.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                if( isLoginValuesValid( email, password ) )
+                {
+                    LoadingCallback<BackendlessUser> loginCallback = createLoginCallback();
+
+                    loginCallback.showLoading();
+
+                    Backendless.UserService.login( email.toString(), password.toString(), loginCallback );
                 }
             }
         };
     }
 
-    public boolean isLoginValuesValid( CharSequence username, CharSequence password )
+    public boolean isLoginValuesValid( CharSequence email, CharSequence password )
     {
-        return username.length() > 2 && password.length() > 2;
+        return Validator.isEmailValid( this, email ) && Validator.isPasswordValid( this, password );
+    }
+
+    public LoadingCallback<BackendlessUser> createLoginCallback()
+    {
+        return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_login ) )
+        {
+            @Override
+            public void handleResponse( BackendlessUser loggedInUser )
+            {
+                super.handleResponse( loggedInUser );
+
+                Intent restaurantListingIntent = new Intent( LoginActivity.this, ItemListingActivity.class );
+                startActivity( restaurantListingIntent );
+                finish();
+            }
+        };
+    }
+
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent data )
+    {
+        if( resultCode == RESULT_OK )
+        {
+            switch( requestCode )
+            {
+                case REGISTER_REQUEST_CODE:
+                    String email = data.getStringExtra( BackendlessUser.EMAIL_KEY );
+                    EditText emailField = (EditText) findViewById( R.id.emailField );
+                    emailField.setText( email );
+
+                    EditText passwordField = (EditText) findViewById( R.id.passwordField );
+                    passwordField.requestFocus();
+
+                    Toast.makeText( this, getString( R.string.info_registered_success ), Toast.LENGTH_SHORT ).show();
+            }
+        }
     }
 }

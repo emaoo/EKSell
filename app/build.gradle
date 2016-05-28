@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.eksell.eksell.eksell"
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,7 +22,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.backendless:backendless:3.0.15.1'
     compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.roughike:bottom-bar:1.2.1'
 }
