@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="#bfb9c2"
+    android:baselineAligned="true"
+    >
+
+    <EditText
+        android:hint=" Username"
+        android:textColorHint="#bfb9c2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/usernameTxt"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/abc_primary_text_material_dark"
+        android:textColor="#FF5F446E"
+        android:layout_weight="0.16"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="#ffffff" />
+
+    <EditText
+        android:hint="Email Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textColorHint="#bfb9c2"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginTop="30dp"
+        android:backgroundTintMode="screen"
+        android:layout_weight="0.16"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textColor="#FF5F446E"
+
+        android:background="#ffffff" />
+    <EditText
+        android:hint="Price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/priceTxt"
+        android:layout_row="4"
+        android:textColorHint="#bfb9c2"
+        android:layout_column="0"
+        android:layout_marginTop="30dp"
+        android:backgroundTintMode="screen"
+        android:layout_weight="0.16"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textColor="#FF5F446E"
+        android:background="#ffffff" />
+    <EditText
+        android:hint="Item Description (Don't forget to add a size if you are selling clothes!)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionTxt"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginTop="30dp"
+        android:backgroundTintMode="screen"
+        android:textColorHint="#bfb9c2"
+        android:layout_weight="0.16"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textColor="#FF5F446E"
+        android:background="#ffffff"
+        >/</EditText>
+
+</LinearLayout>

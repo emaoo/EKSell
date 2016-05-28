@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eksell.eksell.eksell.CameraActivity;
 import com.eksell.eksell.eksell.OrderActivity;
 import com.eksell.eksell.eksell.R;
 import com.eksell.eksell.entities.Item;
@@ -58,11 +59,11 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
                 Toast.makeText(getContext(),
                         "we are going to send a message to the seller about your order. Thanks! ",
                         Toast.LENGTH_LONG).show();
-                /*
-                Intent showOrderIntent = new Intent( getContext(), OrderActivity.class );
-                showOrderIntent.putExtra( "eksell", item);
+
+                Intent showOrderIntent = new Intent( getContext(), CameraActivity.class );
+                //showOrderIntent.putExtra( "user", item.getSeller());
                 getContext().startActivity( showOrderIntent );
-                */
+
             }
         });
 

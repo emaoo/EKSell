@@ -15,11 +15,11 @@ import com.eksell.eksell.utility.LoadingCallback;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ItemListingActivity extends AppCompatActivity {
 
+    private final int pageSize = 3;
     private BackendlessCollection<Item> itemsBackendless;
     private List<Item> totalItems = new ArrayList<>();
     private boolean isLoadingItems = false;
@@ -38,7 +38,7 @@ public class ItemListingActivity extends AppCompatActivity {
         itemListView.setAdapter( adapter );
 
         QueryOptions queryOptions = new QueryOptions();
-        queryOptions.setPageSize(3);
+        queryOptions.setPageSize(pageSize);
 
         BackendlessDataQuery query = new BackendlessDataQuery( queryOptions );
 

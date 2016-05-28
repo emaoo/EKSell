@@ -3,17 +3,14 @@ package com.eksell.eksell.eksell;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.eksell.eksell.utility.BackendSettings;
 import com.eksell.eksell.utility.LoadingCallback;
-import com.backendless.async.callback.AsyncCallback;
 import com.eksell.eksell.utility.Validator;
 
 
@@ -24,46 +21,40 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_registration );
 
-        Backendless.initApp( this, BackendSettings.APPLICATION_ID, BackendSettings.SECRET_KEY, BackendSettings.VERSION );
+        Backendless.initApp( this, BackendSettings.APPLICATION_ID, BackendSettings.SECRET_KEY,
+                BackendSettings.VERSION );
 
+        // click registration button
         Button registerButton = (Button) findViewById( R.id.registerButton );
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText nameField = (EditText) findViewById( R.id.nameField );
+                EditText emailField = (EditText) findViewById( R.id.emailField );
+                EditText passwordField = (EditText) findViewById( R.id.passwordField );
+                EditText passwordConfirmField = (EditText) findViewById( R.id.passwordConfirmField );
 
-        View.OnClickListener registerButtonClickListener = createRegisterButtonClickListener();
+                CharSequence name = nameField.getText();
+                CharSequence email = emailField.getText();
+                CharSequence password = passwordField.getText();
+                CharSequence passwordConfirmation = passwordConfirmField.getText();
 
-        registerButton.setOnClickListener( registerButtonClickListener );
+                if( isRegistrationValuesValid( name, email, password, passwordConfirmation ) )
+                {
+                    BackendlessUser user = new BackendlessUser();
+                    user.setEmail( email.toString() );
+                    user.setPassword( password.toString() );
+                    user.setProperty( "name", name );
+
+                    LoadingCallback<BackendlessUser> registrationCallback = createRegistrationCallback();
+                    registrationCallback.showLoading();
+                    Backendless.UserService.register( user, registrationCallback );
+                }
+            }
+        });
     }
 
-    public boolean isRegistrationValuesValid( CharSequence name, CharSequence email, CharSequence password,
-                                              CharSequence passwordConfirm )
-    {
-        return Validator.isNameValid( this, name )
-                && Validator.isEmailValid( this, email )
-                && Validator.isPasswordValid( this, password )
-                && isPasswordsMatch( password, passwordConfirm );
-    }
-
-    public boolean isPasswordsMatch( CharSequence password, CharSequence passwordConfirm )
-    {
-        if( !TextUtils.equals( password, passwordConfirm ) )
-        {
-            Toast.makeText( this, getString( R.string.warning_passwords_do_not_match ), Toast.LENGTH_LONG ).show();
-            return false;
-        }
-
-        return true;
-    }
-
-    public void registerUser( String name, String email, String password,
-                              AsyncCallback<BackendlessUser> registrationCallback )
-    {
-        BackendlessUser user = new BackendlessUser();
-        user.setEmail( email );
-        user.setPassword( password );
-        user.setProperty( "name", name );
-
-        Backendless.UserService.register( user, registrationCallback );
-    }
-
+    // handle response from register call
     public LoadingCallback<BackendlessUser> createRegistrationCallback()
     {
         return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_register ) )
@@ -80,31 +71,12 @@ public class RegistrationActivity extends AppCompatActivity {
         };
     }
 
-    public View.OnClickListener createRegisterButtonClickListener()
+    private boolean isRegistrationValuesValid( CharSequence name, CharSequence email,
+                                              CharSequence password, CharSequence passwordConfirm )
     {
-        return new View.OnClickListener()
-        {
-            @Override
-            public void onClick( View v )
-            {
-                EditText nameField = (EditText) findViewById( R.id.nameField );
-                EditText emailField = (EditText) findViewById( R.id.emailField );
-                EditText passwordField = (EditText) findViewById( R.id.passwordField );
-                EditText passwordConfirmField = (EditText) findViewById( R.id.passwordConfirmField );
-
-                CharSequence name = nameField.getText();
-                CharSequence email = emailField.getText();
-                CharSequence password = passwordField.getText();
-                CharSequence passwordConfirmation = passwordConfirmField.getText();
-
-                if( isRegistrationValuesValid( name, email, password, passwordConfirmation ) )
-                {
-                    LoadingCallback<BackendlessUser> registrationCallback = createRegistrationCallback();
-
-                    registrationCallback.showLoading();
-                    registerUser( name.toString(), email.toString(), password.toString(), registrationCallback );
-                }
-            }
-        };
+        return Validator.isNameValid( this, name )
+                && Validator.isEmailValid( this, email )
+                && Validator.isPasswordValid( this, password )
+                && Validator.isPasswordsMatch( this, password, passwordConfirm );
     }
 }

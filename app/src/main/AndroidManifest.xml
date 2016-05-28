@@ -35,6 +35,10 @@
             android:name=".OrderActivity"
             android:label="@string/activity_listing">
         </activity>
+
+        <activity
+            android:name=".CameraActivity" >
+        </activity>
     </application>
 
 </manifest>

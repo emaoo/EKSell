@@ -27,33 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         Backendless.initApp( this, BackendSettings.APPLICATION_ID,
                 BackendSettings.SECRET_KEY, BackendSettings.VERSION );
 
+        // click login button
         Button loginButton = (Button) findViewById( R.id.loginButton );
-        loginButton.setOnClickListener( createLoginButtonListener() );
-
-        Button regButton = (Button) findViewById( R.id.regButton );
-        regButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                startRegistrationActivity();
-            }
-
-        });
-    }
-
-    public void startRegistrationActivity()
-    {
-        Intent registrationIntent = new Intent( this, RegistrationActivity.class );
-        startActivityForResult( registrationIntent, REGISTER_REQUEST_CODE );
-    }
-
-    public View.OnClickListener createLoginButtonListener()
-    {
-        return new View.OnClickListener()
-        {
-            @Override
-            public void onClick( View v )
-            {
+            public void onClick(View v) {
                 EditText emailField = (EditText) findViewById( R.id.emailField );
                 EditText passwordField = (EditText) findViewById( R.id.passwordField );
 
@@ -69,7 +47,17 @@ public class LoginActivity extends AppCompatActivity {
                     Backendless.UserService.login( email.toString(), password.toString(), loginCallback );
                 }
             }
-        };
+        });
+
+        // click registration button
+        Button regButton = (Button) findViewById( R.id.regButton );
+        regButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registrationIntent = new Intent( LoginActivity.this, RegistrationActivity.class );
+                startActivityForResult( registrationIntent, REGISTER_REQUEST_CODE );
+            }
+        });
     }
 
     public boolean isLoginValuesValid( CharSequence email, CharSequence password )
