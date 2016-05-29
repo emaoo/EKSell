@@ -13,8 +13,24 @@ import com.eksell.eksell.utility.BackendSettings;
 import com.eksell.eksell.utility.LoadingCallback;
 import com.eksell.eksell.utility.Validator;
 
-
+/**  	
+  * Registers the user through entered entries
+  * 
+  * @author Eileen Mao
+  * @version May 12, 2016
+  * 
+  * @author Period - 3
+  * @author Assignment - EKSell
+  * 
+  * @author Sources - Backendless API
+  */
 public class RegistrationActivity extends AppCompatActivity {
+    /**
+     * Creates the screen for the activity and initializes the BackEndless Application. The method
+     * then creates the registration button and saves the entered entries (if valid) and saves them
+     * into a user on BackEndless
+     * @param savedInstanceState is the state of the app
+     */
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -27,6 +43,8 @@ public class RegistrationActivity extends AppCompatActivity {
         // click registration button
         Button registerButton = (Button) findViewById( R.id.registerButton );
         registerButton.setOnClickListener(new View.OnClickListener() {
+            
+            // once clicked, retrieves the entries and saves it into a user onto Backendless
             @Override
             public void onClick(View v) {
                 EditText nameField = (EditText) findViewById( R.id.nameField );
@@ -54,7 +72,10 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    // handle response from register call
+    /**
+     * Retrieves the result of the registration call
+     * @return failure or success
+     */
     public LoadingCallback<BackendlessUser> createRegistrationCallback()
     {
         return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_register ) )
@@ -70,7 +91,14 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
     }
-
+    /**
+     * Checks to see if the entered values are valid
+     * @param name is the name of the user
+     * @param email is the user's email
+     * @param password is the user's desired password
+     * @param passwordConfirm is a confirmation of the password
+     * @return true if the registration is valid, false otherwise
+     */
     private boolean isRegistrationValuesValid( CharSequence name, CharSequence email,
                                               CharSequence password, CharSequence passwordConfirm )
     {
