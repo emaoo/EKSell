@@ -25,14 +25,35 @@ import com.backendless.files.BackendlessFile;
  */
 
 public class CameraActivity extends AppCompatActivity {
+    /**
+     * Default path root for the image
+     */
     public static final String DEFAULT_PATH_ROOT = "img";
+    /**
+     * String for the photo URL
+     */ 
     public final static String PHOTO_URL = "PHOTO_URL";
 
+    /**
+     * Camera request code for onActivityResult()
+     */
     private static final int CAMERA_REQUEST = 1888;
+    
+    /**
+     * ImageView of photo taken
+     */
     private ImageView imageViewPhoto;
+    
+    /**
+     * Initialized Random object
+     */
     private Random random = new Random();
     Item item = new Item();
-
+    /**
+     * Creates the layout and handles the response when the "POST" button is
+     * clicked
+     * @param savedInstanceState is the current saved state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +62,22 @@ public class CameraActivity extends AppCompatActivity {
         Button submitButton = (Button) findViewById( R.id.submitButton );
         submitButton.setOnClickListener( new View.OnClickListener()
         {
+            /**
+             * When the "POST" button is clicked, this method retrieves this photo's unique
+             * photo ID and subsequently handles the response
+             * @param v
+             */
             @Override
             public void onClick( View v )
             {
                 Backendless.Counters.incrementAndGet( "photo_id", new AsyncCallback<Integer>()
                 {
+                    /**
+                     * This method handles the response by retrieving the respective entered
+                     * texts, assigns the image its unique image Url to be saved on
+                     * Backendless, and saves it as an Item to be saved onto the server
+                     * @param response is the response returned by the server
+                     */
                     @Override
                     public void handleResponse( Integer response )
                     {
@@ -69,6 +101,12 @@ public class CameraActivity extends AppCompatActivity {
                         Backendless.Data.of( Item.class ).save( item, new LoadingCallback<Item>(
                                 CameraActivity.this, "saving item ...", true )
                         {
+                            /**
+                             * Once the item has been sent to the server, this method handles
+                             * the response. If successful, it then sends the activity to the
+                             * ItemListingActivity class
+                             * @param response is the response returned by the server
+                             */
                             @Override
                             public void handleResponse( Item response )
                             {
@@ -79,7 +117,11 @@ public class CameraActivity extends AppCompatActivity {
                             }
                         } );
                     }
-
+                    /**
+                     * If it is unsuccessful, sends a message to the user of the error through a
+                     * Toast
+                     * @param fault
+                     */
                     @Override
                     public void handleFault( BackendlessFault fault )
                     {
@@ -95,6 +137,14 @@ public class CameraActivity extends AppCompatActivity {
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    /**
+     * If the user has taken a picture and confirms it by clicking the check, this saves
+     * the picture, displays it on the ImageView, and uploads it onto the server into the
+     * descignated image URL. If not, it tries again.
+     * @param requestCode is the request code
+     * @param resultCode is the result code
+     * @param data is the intent passed
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             String pictureName = "camera" + random.nextInt() + ".png";
@@ -106,6 +156,10 @@ public class CameraActivity extends AppCompatActivity {
             Backendless.Files.Android.upload( bitmap, Bitmap.CompressFormat.PNG, 100, pictureName,
                      DEFAULT_PATH_ROOT, new AsyncCallback<BackendlessFile>()
             {
+                /**
+                 * If the upload response is successful, this method sets the image's url
+                 * @param response
+                 */
                 @Override
                 public void handleResponse( BackendlessFile response )
                 {
@@ -113,6 +167,10 @@ public class CameraActivity extends AppCompatActivity {
                     item.setImageUrl(photoCameraUrl);
                 }
 
+                /**
+                 * If not, a message (Toast) of the error is sent to the user
+                 * @param fault
+                 */
                 @Override
                 public void handleFault( BackendlessFault fault )
                 {
