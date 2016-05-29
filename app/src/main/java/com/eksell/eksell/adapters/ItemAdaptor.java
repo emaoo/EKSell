@@ -72,12 +72,12 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),
-                        "we are going to send a message to the seller about your order. Thanks! ",
+                        "Please fill your detail question in the fields. Thanks! ",
                         Toast.LENGTH_LONG).show();
 
                 Intent showOrderIntent = new Intent( getContext(), OrderActivity.class );
+                showOrderIntent.putExtra("email", item.getSeller().getEmail());
                 getContext().startActivity( showOrderIntent );
-
             }
         });
 

@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="#bfb9c2"
+    android:baselineAligned="true"
+    tools:context=".OrderActivity">
+
+    <EditText
+        android:hint=" Subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:id="@+id/subjectText"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/abc_primary_text_material_dark"
+        android:layout_weight="0.15"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="#ffffff" />
+
+    <EditText
+        android:hint="Write your detail question here, it is better to also give future contact info"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:gravity="top"
+        android:id="@+id/messageText"
+        android:layout_below="@+id/subjectText"
+        android:layout_marginTop="10dp"
+        android:backgroundTintMode="screen"
+        android:textColorHint="#bfb9c2"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textColor="#FF5F446E"
+        android:background="#ffffff"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:id="@+id/sendButton"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:layout_marginTop="25dp"
+        android:background="#FF5F446E"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textColor="@color/abc_secondary_text_material_dark"
+        android:textSize="18dp"
+        android:layout_weight="0.01" />
+
 
 </LinearLayout>
