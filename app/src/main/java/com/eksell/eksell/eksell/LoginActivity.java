@@ -1,5 +1,16 @@
 package com.eksell.eksell.eksell;
-
+/**	  	
+  * Creates the login page and logs the user in if the entries are valid or directs the user to register
+  * if he or she is a new user
+  * 
+  * @author Eileen Mao
+  * @version May 12, 2016
+  * 
+  * @author Period - 3
+  * @author Assignment - EKSell
+  *
+  * @author Sources - Backendless API
+  */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +24,6 @@ import com.backendless.BackendlessUser;
 import com.eksell.eksell.utility.BackendSettings;
 import com.eksell.eksell.utility.LoadingCallback;
 import com.eksell.eksell.utility.Validator;
-
 
 public class LoginActivity extends AppCompatActivity {
     /**
