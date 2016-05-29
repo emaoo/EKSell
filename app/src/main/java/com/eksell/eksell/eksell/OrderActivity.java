@@ -1,6 +1,5 @@
 package com.eksell.eksell.eksell;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,11 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
-import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.eksell.eksell.utility.BackendSettings;
-import com.eksell.eksell.utility.DialogHelper;
 
 import java.util.ArrayList;
 
@@ -41,17 +38,11 @@ public class OrderActivity  extends AppCompatActivity {
             @Override
             public void onClick( View v )
             {
-            final ProgressDialog progressDialog = new ProgressDialog( OrderActivity.this );
-            progressDialog.setMessage( getString( R.string.loading_submit_order ) );
-            progressDialog.show();
-
             Backendless.Counters.incrementAndGet( "email_id", new AsyncCallback<Integer>()
             {
                 @Override
                 public void handleResponse( Integer response )
                 {
-                    progressDialog.dismiss();
-
                     sendEmailAsync();
 
                     Toast.makeText(OrderActivity.this,
@@ -65,9 +56,7 @@ public class OrderActivity  extends AppCompatActivity {
                 @Override
                 public void handleFault( BackendlessFault fault )
                 {
-                    progressDialog.dismiss();
-
-                    DialogHelper.createErrorDialog( OrderActivity.this, "BackendlessFault", fault.getMessage() ).show();
+                    Toast.makeText(OrderActivity.this, fault.getMessage(), Toast.LENGTH_LONG).show();
                 }
             } );
             }

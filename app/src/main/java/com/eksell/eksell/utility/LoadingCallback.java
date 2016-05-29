@@ -39,15 +39,6 @@ public class LoadingCallback<T> implements AsyncCallback<T> {
         progressDialog = new ProgressDialog( context );
         progressDialog.setMessage( progressDialogMessage );
     }
-    
-    /**
-     * Constructor that initializes the context and an empty message and shows the progress dialog
-     */
-    public LoadingCallback( Context context, boolean showProgressDialog )
-    {
-        this( context );
-        progressDialog.show();
-    }
 
     /**
      * Constructor that initializes the context and progess dialog message and shows the progress dialog
@@ -71,17 +62,11 @@ public class LoadingCallback<T> implements AsyncCallback<T> {
     public void handleFault( BackendlessFault fault )
     {
         progressDialog.dismiss();
-        DialogHelper.createErrorDialog( context, "BackendlessFault", fault.getMessage() ).show();
     }
 
     public void showLoading()
     {
         progressDialog.show();
-    }
-
-    public void hideLoading()
-    {
-        progressDialog.dismiss();
     }
 
 }

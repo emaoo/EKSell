@@ -2,7 +2,6 @@ package com.eksell.eksell.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eksell.eksell.eksell.CameraActivity;
 import com.eksell.eksell.eksell.OrderActivity;
 import com.eksell.eksell.eksell.R;
 import com.eksell.eksell.entities.Item;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -59,9 +53,7 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
         itemPriceView.setText( "$" + df.format(item.getPrice() / 100.0) );
 
         if ((item.getImageUrl() != null) && (!item.getImageUrl().trim().isEmpty())) {
-            Picasso.with(this.getContext())
-                    .load(item.getImageUrl())
-                    .into(ivItemImage);
+            Picasso.with(this.getContext()).load(item.getImageUrl()).into(ivItemImage);
         } else {
             ivItemImage.setImageResource(R.drawable.sample_image);
         }

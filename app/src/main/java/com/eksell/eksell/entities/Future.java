@@ -5,7 +5,7 @@ import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
 
 /**
- * Created by tmao on 5/24/16.
+ * Created by emao on 5/24/16.
  */
 public class Future<T> implements AsyncCallback<T>
 {
