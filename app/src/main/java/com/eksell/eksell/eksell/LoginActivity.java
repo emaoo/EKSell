@@ -16,8 +16,19 @@ import com.eksell.eksell.utility.Validator;
 
 
 public class LoginActivity extends AppCompatActivity {
+    /**
+     * Registration request code for starting the registration activity
+     */
     private static final int REGISTER_REQUEST_CODE = 1;
-
+    
+    /**
+     * Creates the screen for the activity with buttons directing the user to either login or
+     * register and then initializes the Backendless Application. This method then creates the respective
+     * login and registration buttons which the user can click when done, and, if the entries are valid,
+     * registrates the user or logs the user in onto the Backendless server (depending on which button is
+     * clicked)
+     * @param savedInstanceState is the saved state of the application
+     */
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -59,12 +70,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Checks if the entered Login values are valid
+     * @param email is the email entered
+     * @param password is the password entered
+     * @return true if valid, false otherwise
+     */
     public boolean isLoginValuesValid( CharSequence email, CharSequence password )
     {
         return Validator.isEmailValid( this, email ) && Validator.isPasswordValid( this, password );
     }
-
+    
+    /**
+     * Retrieves the result of the log in and handles it based on the result
+     * @return success or failure
+     */
     public LoadingCallback<BackendlessUser> createLoginCallback()
     {
         return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_login ) )
@@ -80,7 +100,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
     }
-
+    /**
+     * When the Login Activity is called, the user is able to enter text into the fields and, if
+     * successful, is shown a message
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult( int requestCode, int resultCode, Intent data )
     {
