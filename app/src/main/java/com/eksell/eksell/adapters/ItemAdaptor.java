@@ -60,7 +60,7 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
                         "we are going to send a message to the seller about your order. Thanks! ",
                         Toast.LENGTH_LONG).show();
 
-                Intent showOrderIntent = new Intent( getContext(), CameraActivity.class );
+                Intent showOrderIntent = new Intent( getContext(), OrderActivity.class );
                 //showOrderIntent.putExtra( "user", item.getSeller());
                 getContext().startActivity( showOrderIntent );
 

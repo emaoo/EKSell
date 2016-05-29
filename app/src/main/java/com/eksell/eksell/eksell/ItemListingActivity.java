@@ -1,8 +1,11 @@
 package com.eksell.eksell.eksell;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.backendless.Backendless;
@@ -83,6 +86,16 @@ public class ItemListingActivity extends AppCompatActivity {
                 }
             }
         } );
+
+        // click sell button
+        Button sellButton = (Button) findViewById( R.id.sellButton );
+        sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent( ItemListingActivity.this, CameraActivity.class );
+                startActivity( cameraIntent );
+            }
+        });
     }
 
     private boolean needToLoadItems( int firstVisibleItem, int visibleItemCount, int totalItemCount )

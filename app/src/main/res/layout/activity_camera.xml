@@ -1,75 +1,81 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1"
-    android:background="#bfb9c2"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="12dp"
+
     android:baselineAligned="true"
-    >
+    android:background="#bfb9c2"
+    tools:context=".CameraActivity">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:id="@+id/divider" />
+
+    <ImageView
+        android:layout_width="2800dp"
+        android:layout_height="230dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/sample_image"
+        android:id="@+id/ivPhoto"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
-        android:hint=" Username"
-        android:textColorHint="#bfb9c2"
+        android:hint="Item Name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/usernameTxt"
-        android:layout_row="6"
-        android:layout_column="0"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/abc_primary_text_material_dark"
-        android:textColor="#FF5F446E"
-        android:layout_weight="0.16"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:background="#ffffff" />
-
-    <EditText
-        android:hint="Email Address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email"
+        android:layout_height="30dp"
+        android:id="@+id/editTextItemName"
+        android:layout_below="@+id/ivPhoto"
+        android:layout_marginTop="25dp"
         android:textColorHint="#bfb9c2"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:layout_marginTop="30dp"
         android:backgroundTintMode="screen"
-        android:layout_weight="0.16"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textColor="#FF5F446E"
-
         android:background="#ffffff" />
+
     <EditText
         android:hint="Price"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/priceTxt"
-        android:layout_row="4"
+        android:layout_height="30dp"
+        android:id="@+id/editTextItemPrice"
+        android:layout_below="@+id/editTextItemName"
+        android:layout_marginTop="10dp"
         android:textColorHint="#bfb9c2"
-        android:layout_column="0"
-        android:layout_marginTop="30dp"
         android:backgroundTintMode="screen"
-        android:layout_weight="0.16"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textColor="#FF5F446E"
         android:background="#ffffff" />
+
     <EditText
         android:hint="Item Description (Don't forget to add a size if you are selling clothes!)"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionTxt"
-        android:layout_row="4"
-        android:layout_column="0"
-        android:layout_marginTop="30dp"
+        android:layout_height="90dp"
+        android:gravity="top"
+        android:id="@+id/editTextItemDescription"
+        android:layout_below="@+id/editTextItemPrice"
+        android:layout_marginTop="10dp"
         android:backgroundTintMode="screen"
         android:textColorHint="#bfb9c2"
-        android:layout_weight="0.16"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textColor="#FF5F446E"
-        android:background="#ffffff"
-        >/</EditText>
+        android:background="#ffffff"/>
 
-</LinearLayout>
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:text="Submit"
+        android:id="@+id/submitButton"
+        android:layout_below="@+id/editTextItemDescription"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

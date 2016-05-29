@@ -21,4 +21,17 @@
         android:id="@+id/list"
         android:layout_marginTop="8dp"
         android:layout_below="@+id/divider" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:textColor="@color/abc_secondary_text_material_dark"
+        android:background="#FF5F446E"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:text="Sell"
+        android:id="@+id/sellButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/list"
+        android:layout_alignEnd="@+id/list" />
+
 </RelativeLayout>

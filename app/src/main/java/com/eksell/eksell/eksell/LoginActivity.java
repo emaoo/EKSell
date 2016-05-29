@@ -74,8 +74,8 @@ public class LoginActivity extends AppCompatActivity {
             {
                 super.handleResponse( loggedInUser );
 
-                Intent restaurantListingIntent = new Intent( LoginActivity.this, ItemListingActivity.class );
-                startActivity( restaurantListingIntent );
+                Intent itemListingIntent = new Intent( LoginActivity.this, ItemListingActivity.class );
+                startActivity( itemListingIntent );
                 finish();
             }
         };
