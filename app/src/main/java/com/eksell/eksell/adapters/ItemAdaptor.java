@@ -2,6 +2,7 @@ package com.eksell.eksell.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,12 @@ import com.eksell.eksell.eksell.CameraActivity;
 import com.eksell.eksell.eksell.OrderActivity;
 import com.eksell.eksell.eksell.R;
 import com.eksell.eksell.entities.Item;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -45,11 +51,20 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
         TextView itemNameView = (TextView) view.findViewById( R.id.itemName);
         TextView descriptionView = (TextView) view.findViewById( R.id.itemDescription);
         TextView itemPriceView = (TextView) view.findViewById( R.id.itemPrice);
+        ImageView ivItemImage = (ImageView) view.findViewById(R.id.ivItemImage);
 
         itemNameView.setText( item.getSeller().getProperty("name") + " - " + item.getName() );
         descriptionView.setText( item.getDescription() );
         DecimalFormat df = new DecimalFormat("#.00");
         itemPriceView.setText( "$" + df.format(item.getPrice() / 100.0) );
+
+        if ((item.getImageUrl() != null) && (!item.getImageUrl().trim().isEmpty())) {
+            Picasso.with(this.getContext())
+                    .load(item.getImageUrl())
+                    .into(ivItemImage);
+        } else {
+            ivItemImage.setImageResource(R.drawable.sample_image);
+        }
 
         // Click Buy it Now Button
         ImageView btBuyNow = (ImageView) view.findViewById( R.id.itemBuyNow);
@@ -61,7 +76,6 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
                         Toast.LENGTH_LONG).show();
 
                 Intent showOrderIntent = new Intent( getContext(), OrderActivity.class );
-                //showOrderIntent.putExtra( "user", item.getSeller());
                 getContext().startActivity( showOrderIntent );
 
             }
@@ -69,4 +83,5 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
 
         return view;
     }
+
 }
