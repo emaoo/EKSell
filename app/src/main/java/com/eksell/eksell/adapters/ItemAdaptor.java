@@ -53,6 +53,7 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
         itemPriceView.setText( "$" + df.format(item.getPrice() / 100.0) );
 
         if ((item.getImageUrl() != null) && (!item.getImageUrl().trim().isEmpty())) {
+            // Use google Picasso library to populate the image from Url
             Picasso.with(this.getContext()).load(item.getImageUrl()).into(ivItemImage);
         } else {
             ivItemImage.setImageResource(R.drawable.sample_image);

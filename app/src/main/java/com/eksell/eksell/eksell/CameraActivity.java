@@ -2,8 +2,6 @@ package com.eksell.eksell.eksell;
 
 import java.util.Random;
 
-import android.app.ProgressDialog;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -28,7 +26,7 @@ import com.backendless.files.BackendlessFile;
 
 public class CameraActivity extends AppCompatActivity {
     public static final String DEFAULT_PATH_ROOT = "img";
-    public final static String PHOTO_CAMERA_URL = "PHOTO_CAMERA_URL";
+    public final static String PHOTO_URL = "PHOTO_URL";
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageViewPhoto;
@@ -46,7 +44,6 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick( View v )
             {
-
                 Backendless.Counters.incrementAndGet( "photo_id", new AsyncCallback<Integer>()
                 {
                     @Override
@@ -59,11 +56,13 @@ public class CameraActivity extends AppCompatActivity {
                         item.setName(editTextItemName.getText().toString());
                         item.setPrice( (Integer.parseInt(editTextItemPrice.getText().toString())));
                         item.setDescription(editTextItemDescription.getText().toString());
+                        // set seller as current user
                         item.setSeller( Backendless.UserService.CurrentUser());
 
+                        // populate image Url if available
                         Bundle extras = getIntent().getExtras();
                         if(extras != null) {
-                            item.setImageUrl(extras.getString(PHOTO_CAMERA_URL));
+                            item.setImageUrl(extras.getString(PHOTO_URL));
                         }
 
                         // save item on backend
@@ -74,8 +73,8 @@ public class CameraActivity extends AppCompatActivity {
                             public void handleResponse( Item response )
                             {
                                 super.handleResponse( response );
-                                Intent orderSuccessIntent = new Intent( CameraActivity.this, ItemListingActivity.class );
-                                startActivity( orderSuccessIntent );
+                                Intent saveSuccessIntent = new Intent( CameraActivity.this, ItemListingActivity.class );
+                                startActivity( saveSuccessIntent );
                                 finish();
                             }
                         } );

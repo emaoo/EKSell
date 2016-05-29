@@ -100,7 +100,8 @@ public class ItemListingActivity extends AppCompatActivity {
 
     private boolean needToLoadItems( int firstVisibleItem, int visibleItemCount, int totalItemCount )
     {
-        return !isLoadingItems && totalItemCount != 0 && totalItemCount - (visibleItemCount + firstVisibleItem) < visibleItemCount / 2;
+        return !isLoadingItems && totalItemCount != 0 &&
+                totalItemCount - (visibleItemCount + firstVisibleItem) < visibleItemCount / 2;
     }
 
     private void addMoreItems( BackendlessCollection<Item> nextPage )
