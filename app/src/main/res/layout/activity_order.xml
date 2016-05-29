@@ -24,7 +24,8 @@
         android:background="#ffffff" />
 
     <EditText
-        android:hint="Write your detail question here, it is better to also give future contact info"
+        android:hint="This should be used to set a meeting time and place to exchange the item and money.
+        Any price negotiations should also be done over email. Lastly, please leave your contact info here."
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:gravity="top"
@@ -32,7 +33,6 @@
         android:layout_below="@+id/subjectText"
         android:layout_marginTop="10dp"
         android:backgroundTintMode="screen"
-        android:textColorHint="#bfb9c2"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:textColor="#FF5F446E"
