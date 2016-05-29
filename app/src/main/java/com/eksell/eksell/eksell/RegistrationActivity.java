@@ -80,6 +80,11 @@ public class RegistrationActivity extends AppCompatActivity {
     {
         return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_register ) )
         {
+            /**
+             * If the response is successful, register the user by their email, set the result to
+             * okay, and finish the activity
+             * @param registeredUser is the user that is being registered
+             */
             @Override
             public void handleResponse( BackendlessUser registeredUser )
             {
