@@ -109,7 +109,8 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             String pictureName = "camera" + random.nextInt() + ".png";
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
+            imageViewPhoto = (ImageView) findViewById( R.id.ivPhoto );
+            imageViewPhoto.setImageBitmap(bitmap);
             Backendless.Files.Android.upload( bitmap, Bitmap.CompressFormat.PNG, 100, pictureName,
                      DEFAULT_PATH_ROOT, new AsyncCallback<BackendlessFile>()
             {
