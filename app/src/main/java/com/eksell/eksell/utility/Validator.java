@@ -5,10 +5,14 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 import com.eksell.eksell.eksell.R;
+
+import java.util.Random;
+import java.util.Stack;
+
 /**
  * A Supporting class with static methods to help the LogIn and Register Activities to verify if the entries are valid
  * 
- * @author Eileen Mao
+ * @author Katherine Xiao, Sean Meng
  * @version May 10, 2016
  * 
  * @author Period - 3
@@ -34,6 +38,11 @@ public class Validator
 
     return true;
   }
+
+    public static boolean isNameValid(String name)
+    {
+        return(name != null && !name.isEmpty());
+    }
   /**
    * Checks to see if the email is valid (not empty and follows email format)
    * @param currentContext is the current state of the object
@@ -90,4 +99,39 @@ public class Validator
 
     return true;
   }
+  
+    /**
+     * Checks to see if the user is a robot or not by verifying if the entered text is the reverse
+     * of the text displayed
+     * @param currentContext is the current state of the object
+     * @param checkCaptcha is the text of the randomly generated numbers displayed
+     * @param enteredText is the text entered by the user
+     * @return true if the entered text is the reverse of the displayed one, false otherwise
+     */
+    public static boolean isNotRobot(Context currentContext, CharSequence checkCaptcha, CharSequence enteredText)
+    {
+        Stack secondStack = new Stack();
+        Stack firstStack = new Stack();
+
+        for(int i = 0; i < 5; i++)
+        {
+            firstStack.push(checkCaptcha.toString().substring(i, i+1));
+        }
+
+        String afterFlip = "";
+        for (int i=0; i<5; i++)
+        {
+            Integer x =  Integer.valueOf(firstStack.pop().toString());
+            secondStack.push(x);
+
+            afterFlip += x.toString();
+        }
+
+        if (!enteredText.toString().isEmpty() && !enteredText.toString().equals(afterFlip))
+        {
+            Toast.makeText(currentContext, "You are a robot", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
 }
