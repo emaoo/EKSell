@@ -21,7 +21,16 @@ import com.eksell.eksell.utility.LoadingCallback;
 import com.backendless.files.BackendlessFile;
 
 /**
- * Created by emao on 5/27/16.
+ * Allows the user to sell an item by taking a picture, adding a name, price,
+ * and description before uploading it onto the server and sending it to the Feed.
+ * 
+ * @author Katherine Xiao
+ * @version May 24, 2016
+ * 
+ * @author Period - 3
+ * @author Assignment - EKSell
+ * 
+ * Sources - Android API, Backendless API, Youtube tutorial
  */
 
 public class CameraActivity extends AppCompatActivity {
