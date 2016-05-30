@@ -85,7 +85,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 && Validator.isPasswordsMatch( this, password, passwordConfirm)
                 && Validator.isNotRobot(this, checkCaptcha, enteredText);
     }
-
+    
+    /**
+     * Registers the user onto the Backendless server
+     * @param name is the name of the user
+     * @param email is the user's email
+     * @param password is the user's password
+     * @param registrationCallback is the response retrieved from the server
+     */
     public void registerUser( String name, String email, String password,
                               AsyncCallback<BackendlessUser> registrationCallback )
     {
@@ -121,11 +128,20 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
     }
-
+    
+    /**
+     * Responds when the Register button is clicked
+     * @return the view that is clicked
+     */
     public View.OnClickListener createRegisterButtonClickListener()
     {
         return new View.OnClickListener()
         {
+            /**
+             * When the view is clicked, this method retrieves the entered values and, if they
+             * are valid, registers the user given the values
+             * @param v the current view
+             */
             @Override
             public void onClick( View v )
             {
