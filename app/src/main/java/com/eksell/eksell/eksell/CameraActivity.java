@@ -30,7 +30,7 @@ import com.backendless.files.BackendlessFile;
  * @author Period - 3
  * @author Assignment - EKSell
  * 
- * Sources - Android API, Backendless API, Youtube tutorial
+ * @author Sources: Android API, Backendless API, Youtube tutorial
  */
 
 public class CameraActivity extends AppCompatActivity {
