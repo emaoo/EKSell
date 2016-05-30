@@ -7,7 +7,13 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 /**
- * Created by emao on 5/18/16.
+ * @author Sean Meng
+ * @version May 12, 2016
+ * 
+ * @author Period - 3
+ * @author Assignment - EKSell
+ * 
+ * @author Sources - Backendless API
  */
 public class LoadingCallback<T> implements AsyncCallback<T> {
     /**
@@ -41,29 +47,42 @@ public class LoadingCallback<T> implements AsyncCallback<T> {
     }
 
     /**
-     * Constructor that initializes the context and progess dialog message and shows the progress dialog
+     * Creates an instance and can immediately show ProgressDialog with a given message
+     * @param context is the context/state of the data
+     * @param progressDialogMessage is the message to be passed and displayed
+     * @param showProgressDialog is set to true if want to immediately show ProgressDialog
      */
     public LoadingCallback( Context context, String progressDialogMessage, boolean showProgressDialog )
     {
         this( context, progressDialogMessage );
         progressDialog.show();
     }
+    
     /**
      * When there is a response available that is not an error, this method dismisses the dialog and removes it
      * from the screen
+     * @param response is the response retrieved from Backendless
      */
     @Override
     public void handleResponse( T response )
     {
         progressDialog.dismiss();
     }
-
+    
+    /**
+     * When there is an error, tbis method dismisses the progress dialog from the
+     * screen
+     * @param fault is the error retrieved from Backendless
+     */
     @Override
     public void handleFault( BackendlessFault fault )
     {
         progressDialog.dismiss();
     }
-
+    
+    /**
+     * Shows a progress dialog.
+     */
     public void showLoading()
     {
         progressDialog.show();
