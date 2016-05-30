@@ -1,7 +1,7 @@
 package com.eksell.eksell.eksell;
 /**	  	
   * Creates the login page and logs the user in if the entries are valid or directs the user to register
-  * if he or she is a new user
+  * if he or she is a new user and to the feed if he or she is a returning user
   * 
   * @author Eileen Mao
   * @version May 12, 2016
@@ -51,6 +51,11 @@ public class LoginActivity extends AppCompatActivity {
         // click login button
         Button loginButton = (Button) findViewById( R.id.loginButton );
         loginButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * When the user clicks the log in button, you retrieve the entered information and, if they are valid, log the
+             * user in onto the server
+             * @param v is the current view
+             */
             @Override
             public void onClick(View v) {
                 EditText emailField = (EditText) findViewById( R.id.emailField );
@@ -73,6 +78,11 @@ public class LoginActivity extends AppCompatActivity {
         // click registration button
         Button regButton = (Button) findViewById( R.id.regButton );
         regButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * When the "Register here" button is clicked, the user is directed to the registration
+             * page 
+             * @param v is the current view
+             */
             @Override
             public void onClick(View v) {
                 Intent registrationIntent = new Intent( LoginActivity.this, RegistrationActivity.class );
@@ -99,6 +109,10 @@ public class LoginActivity extends AppCompatActivity {
     {
         return new LoadingCallback<BackendlessUser>( this, getString( R.string.loading_login ) )
         {
+            /**
+             * If the response is successful, directs the user to the feed
+             * @param loggedInUser is the user that is logged in
+             */
             @Override
             public void handleResponse( BackendlessUser loggedInUser )
             {
@@ -113,9 +127,9 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * When the Login Activity is called, the user is able to enter text into the fields and, if
      * successful, is shown a message
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * @param requestCode is the request code
+     * @param resultCode is the result code
+     * @param data is the data received
      */
     @Override
     protected void onActivityResult( int requestCode, int resultCode, Intent data )
