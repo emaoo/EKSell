@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @author Period - 3
  * @author Assignment - EKSell
  * 
- * @Sources Backendless API
+ * @author Sources: Backendless API
  */
 
 public class Item implements Serializable
