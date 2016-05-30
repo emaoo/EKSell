@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * @author Period - 3
  * @author Assignment - EKSell
  * 
- * @Sources Backendless API, Android API
+ * @author Sources: Backendless API, Android API
  */
 public class OrderActivity  extends AppCompatActivity {
     
