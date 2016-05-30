@@ -18,7 +18,7 @@ import java.util.Stack;
  * @author Period - 3
  * @author Assignment - EKSell
  * 
- * @author Sources - None
+ * @author Sources - StackOverflow (for email matches pattern)
  */
 public class Validator
 {
@@ -52,13 +52,14 @@ public class Validator
    */
   public static boolean isEmailValid( Context currentContext, CharSequence email )
   {
+      String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     if( email.toString().isEmpty() )
     {
       Toast.makeText( currentContext, currentContext.getString( R.string.warning_email_empty ), Toast.LENGTH_LONG ).show();
       return false;
     }
 
-    if( !Patterns.EMAIL_ADDRESS.matcher( email ).matches() )
+    if( !email.toString().matches(emailPattern))
     {
       Toast.makeText( currentContext, currentContext.getString( R.string.warning_email_invalid ), Toast.LENGTH_LONG ).show();
       return false;
@@ -85,13 +86,14 @@ public class Validator
   }
   /**
      * Checks to see if the password matches the confirmation password
+     * @param currentContext is the current state of the object
      * @param password is the password entered
      * @param passwordConfirm is the confirmation of the password
      * @return true if the passwords match, false otherwise
      */
   public static boolean isPasswordsMatch( Context currentContext, CharSequence password, CharSequence passwordConfirm )
   {
-    if( !TextUtils.equals( password, passwordConfirm ) )
+    if( !password.toString().equals(passwordConfirm.toString()) )
     {
       Toast.makeText( currentContext, currentContext.getString( R.string.warning_passwords_do_not_match ), Toast.LENGTH_LONG ).show();
       return false;
@@ -99,7 +101,7 @@ public class Validator
 
     return true;
   }
-  
+
     /**
      * Checks to see if the user is a robot or not by verifying if the entered text is the reverse
      * of the text displayed
@@ -134,4 +136,5 @@ public class Validator
         }
         return true;
     }
+    //end
 }
