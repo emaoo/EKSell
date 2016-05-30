@@ -7,6 +7,11 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 
 /**
+ * A callback, which has the ability to show loading dialog while the response is being received and
+ * shows an AlertDialog with an error message in the even of a failure.
+ *
+ * @param <T> class to be received from server
+ * 
  * @author Sean Meng
  * @version May 12, 2016
  * 
