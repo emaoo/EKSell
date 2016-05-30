@@ -27,7 +27,7 @@ import java.util.List;
  * @author Period - 3
  * @author Assignment - EKSell
  *
- * @Sources Android API, StackOverflow
+ * @author Sources: Android API, StackOverflow
  */
 public class ItemAdaptor extends ArrayAdapter<Item> {
     /**
