@@ -19,16 +19,53 @@ import com.eksell.eksell.utility.LoadingCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * @author Eileen Mao, Katherine Xiao, Sean Meng
+ * @version May 27, 2016
+ *
+ * @author Period - 3
+ * @author Assignment - EKSell
+ *
+ * @author Sources - Backendless API, Android Developers API & Reference 
+ */
 
 public class ItemListingActivity extends AppCompatActivity {
-
+    /**
+     * Number of items displayed on the screen at a time
+     */
     private final int pageSize = 3;
+    
+    /**
+     * Collection of items to be retrieved
+     */
     private BackendlessCollection<Item> itemsBackendless;
+    
+    /**
+     * List of all the items
+     */ 
     private List<Item> totalItems = new ArrayList<>();
+    
+    /**
+     * Whether or not the user requests to load more items
+     */ 
     private boolean isLoadingItems = false;
+    
+    /**
+     * Adaptor that serves as a bridge between the list and the ListView
+     */ 
     private ItemAdaptor adapter;
+    
+    /**
+     * Displayed list on the screen
+     */ 
     ListView itemListView;
-
+    
+    /**
+     * Creates the layout of the page by calling the XML layout, setting the ListView through using the adaptor to
+     * convert from a list, creating the number of items to be displayed, and retrieving them if the user is
+     * scrolling
+     * @param savedInstanceState is the current state of the app
+     */ 
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -48,6 +85,7 @@ public class ItemListingActivity extends AppCompatActivity {
         Backendless.Data.of( Item.class ).find( query, new LoadingCallback<BackendlessCollection<Item>>(
                 this, getString( R.string.loading_items), true )
         {
+            
             @Override
             public void handleResponse( BackendlessCollection<Item> itemBackendlessCollection )
             {
