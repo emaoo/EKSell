@@ -4,8 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Awesome on 5/27/2016.
+ * Represents an email to be sent
+ *
+ * @author Sean Meng
+ * @version May 27, 2016
+ *
+ * @author Period - 3
+ * @author Assignment - EKSell
+ *
+ * @sources None
  */
+ 
 public class eMail {
     /**
      * List of emails the email is sent to
