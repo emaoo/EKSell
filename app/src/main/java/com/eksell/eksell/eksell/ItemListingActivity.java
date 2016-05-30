@@ -20,6 +20,9 @@ import com.eksell.eksell.utility.LoadingCallback;
 import java.util.ArrayList;
 import java.util.List;
 /**
+ * This is the feed class that projects the pictures in the feed in a List View, three at a time, and determines
+ * if more pictures need to be loaded/added, and if so, retrieves the next few to be loaded from the server
+ * 
  * @author Eileen Mao, Katherine Xiao, Sean Meng
  * @version May 27, 2016
  *
