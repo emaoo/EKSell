@@ -6,6 +6,19 @@ import com.backendless.async.callback.AsyncCallback;
 
 import java.io.Serializable;
 
+/**
+ * Creates the item, which consists of the name, description, and price, as well as the image 
+ * url to be used to retrieve the image from the server.
+ * 
+ * @author Sean Meng
+ * @version May 26, 2016
+ * 
+ * @author Period - 3
+ * @author Assignment - EKSell
+ * 
+ * @Sources Backendless API
+ */
+
 public class Item implements Serializable
 {
     /**
