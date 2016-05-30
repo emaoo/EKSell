@@ -14,11 +14,31 @@ import com.backendless.exceptions.BackendlessFault;
 import com.eksell.eksell.utility.BackendSettings;
 
 import java.util.ArrayList;
-
+/**
+ * When the user clicks the "BUY" button, they are directed to this activity, which lets him or her
+ * write and send an email to the seller (and to himerself/herself) expressing their interest and
+ * purchase details
+ *
+ * @author Sean Meng
+ * @version May 28, 2016
+ * 
+ * @author Period - 3
+ * @author Assignment - EKSell
+ * 
+ * @Sources Backendless API, Android API
+ */
 public class OrderActivity  extends AppCompatActivity {
-
+    
+    /**
+     * The person who is receiving the email (aka the seller)
+     */
     String emailRecipient;
-
+    
+    /**
+     * Creates the layout and determines who the recipient should be. Then, when the buyer has
+     * written the email and clicks the "SEND" button, am email is sent to the seller and the buyer
+     * @param savedInstanceState is the current state of the screen
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +55,21 @@ public class OrderActivity  extends AppCompatActivity {
         Button sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener( new View.OnClickListener()
         {
+            /**
+             * When the button is clicked, an email is sent to the buyer and seller and a message
+             * notifies the user of its success. He or she is then directed back to the feed.
+             * @param v is the current view
+             */
             @Override
             public void onClick( View v )
             {
             Backendless.Counters.incrementAndGet( "email_id", new AsyncCallback<Integer>()
             {
+                /**
+                 * If the order is successful, sends the email, displays a success message, and then
+                 * directs the user back to the feed
+                 * @param response is the response from the server
+                 */
                 @Override
                 public void handleResponse( Integer response )
                 {
@@ -52,7 +82,11 @@ public class OrderActivity  extends AppCompatActivity {
                     Intent intent = new Intent (OrderActivity.this, ItemListingActivity.class);
                     startActivity(intent);
                 }
-
+                
+                /**
+                 * If there is an error, relays the error back to the uesr through a toast
+                 * @param fault is the error
+                 */
                 @Override
                 public void handleFault( BackendlessFault fault )
                 {
@@ -64,16 +98,27 @@ public class OrderActivity  extends AppCompatActivity {
 
     }
 
+    /**
+     * Sends the email entered in the text box to the seller and buyer
+     */
     private void sendEmailAsync()
     {
         AsyncCallback<Void> sendEmailCallback = new AsyncCallback<Void>()
         {
+            /**
+             * If the email is sent successfully, notifies the user of the scces
+             * @param response is the response from the server
+             */
             @Override
             public void handleResponse( Void response )
             {
                 Toast.makeText( OrderActivity.this, "email has been sent",
                         Toast.LENGTH_LONG ).show();
             }
+            /**
+             * If there is an error sending an email, displays the error to the user
+             * @param fault is the error
+             */
             @Override
             public void handleFault( BackendlessFault fault )
             {
