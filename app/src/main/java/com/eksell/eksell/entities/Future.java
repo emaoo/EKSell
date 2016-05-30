@@ -7,7 +7,7 @@ import com.backendless.exceptions.BackendlessFault;
 /**
  * A class required by Backendless to work things in the background and display errors
  *
- * @author Sergey Chupov (Backendless admin), Documentatio by Katherine Xiao
+ * @author Sergey Chupov (Backendless admin), Documentation by Katherine Xiao
  * @version February 25, 2015
  *
  */
