@@ -85,7 +85,13 @@ public class ItemListingActivity extends AppCompatActivity {
         Backendless.Data.of( Item.class ).find( query, new LoadingCallback<BackendlessCollection<Item>>(
                 this, getString( R.string.loading_items), true )
         {
-            
+            /**
+             * Handles the response (which contains the collection of items) from the server by
+             * initializing the collection instance and adding the items to the total list of
+             * items
+             * @param itemBackendlessCollection is the response from the server that contains the
+             *                                  collection of items to be added
+             */
             @Override
             public void handleResponse( BackendlessCollection<Item> itemBackendlessCollection )
             {
@@ -99,9 +105,23 @@ public class ItemListingActivity extends AppCompatActivity {
 
         itemListView.setOnScrollListener(new AbsListView.OnScrollListener()
         {
+            /**
+             * If the ListView is being scrolled through, this method will be called before the
+             * next frame of the scroll is rendered.
+             * @param view is the current view of the scroll state
+             * @param scrollState is the current scroll state
+             */
             @Override
             public void onScrollStateChanged( AbsListView view, int scrollState ) { }
-
+            
+            /**
+             * When the user is scrolling and more items need to be loaded, this method loads
+             * the next page of items
+             * @param view is the current scroll state
+             * @param firstVisibleItem is the index of the first item
+             * @param visibleItemCount is the number of visible items
+             * @param totalItemCount is the number of items in the adaptor
+             */
             @Override
             public void onScroll( AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount )
             {
@@ -111,6 +131,11 @@ public class ItemListingActivity extends AppCompatActivity {
 
                     itemsBackendless.nextPage(new LoadingCallback<BackendlessCollection<Item>>( ItemListingActivity.this )
                     {
+                        /**
+                         * Handles the response of the next collections of items to be retrieved
+                         * by adding it to the total list of items
+                         * @param nextPage is the next collection of items to be retrieved
+                         */
                         @Override
                         public void handleResponse( BackendlessCollection<Item> nextPage )
                         {
@@ -128,6 +153,11 @@ public class ItemListingActivity extends AppCompatActivity {
         // click sell button
         Button sellButton = (Button) findViewById( R.id.sellButton );
         sellButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * If the sell button is clicked, the user is directed to the Camera Activity class where
+             * he or she can take a picture and sell their item
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent( ItemListingActivity.this, CameraActivity.class );
@@ -135,13 +165,23 @@ public class ItemListingActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * Determines whether there is a need to load more items
+     * @param firstVisibleItem is the index of the first item
+     * @param visibleItemCount is the number of visible items
+     * @param totalItemCount is the number of items in the adaptor
+     * @return true if there is a need, false otherwise
+     */
     private boolean needToLoadItems( int firstVisibleItem, int visibleItemCount, int totalItemCount )
     {
         return !isLoadingItems && totalItemCount != 0 &&
                 totalItemCount - (visibleItemCount + firstVisibleItem) < visibleItemCount / 2;
     }
-
+    
+    /**
+     * Adds the next few items to the total list
+     * @param nextPage is the next few items to be added
+     */
     private void addMoreItems( BackendlessCollection<Item> nextPage )
     {
         totalItems.addAll( nextPage.getCurrentPage() );
