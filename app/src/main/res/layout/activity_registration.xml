@@ -8,16 +8,6 @@
     android:baselineAligned="true"
     tools:context=".RegistrationActivity">
 
-    <ImageView
-        android:layout_width="181dp"
-        android:layout_height="106dp"
-        android:src="@drawable/eks3"
-        android:foregroundGravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginRight="2dp"
-        android:layout_weight="0.07" />
-
     <EditText
         android:hint=" Name"
         android:layout_width="match_parent"
@@ -27,7 +17,7 @@
         android:layout_column="0"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/abc_primary_text_material_dark"
-        android:layout_weight="0.15"
+        android:layout_weight="0.13"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:background="#ffffff" />
@@ -41,7 +31,7 @@
         android:layout_column="0"
         android:layout_marginTop="12dp"
         android:backgroundTintMode="screen"
-        android:layout_weight="0.15"
+        android:layout_weight="0.13"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:backgroundTint="@android:color/white"
@@ -56,7 +46,7 @@
         android:layout_column="0"
         android:layout_marginTop="12dp"
         android:backgroundTintMode="screen"
-        android:layout_weight="0.15"
+        android:layout_weight="0.13"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:backgroundTint="@android:color/white"
@@ -69,12 +59,37 @@
         android:id="@+id/passwordConfirmField"
         android:layout_row="4"
         android:layout_column="0"
+        android:textSize="14dp"
         android:layout_marginTop="12dp"
         android:backgroundTintMode="screen"
-        android:layout_weight="0.15"
+        android:layout_weight="0.13"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:backgroundTint="@android:color/white"
+        android:background="#ffffff" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView"
+        android:layout_weight="0.10"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:hint="Write this number backwards to prove you're not a robot."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/notARobot"
+        android:layout_row="6"
+        android:backgroundTint="@color/abc_primary_text_material_dark"
+        android:layout_weight="0.13"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="#ffffff" />
 
     <Button
@@ -82,7 +97,6 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/registerButton"
-        android:layout_gravity="bottom|center_horizontal"
         android:layout_row="5"
         android:layout_column="0"
         android:layout_marginTop="25dp"
