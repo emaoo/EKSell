@@ -1,3 +1,5 @@
+<!--This is the layout for the Feed Activity. This is a relative layout which means that
+items are placed relative to the other items around it-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +9,17 @@
     android:paddingTop="12dp"
     android:paddingBottom="15dp"
     android:baselineAligned="true"
-    tools:context=".ItemListingActivity">
+    tools:context=".FeedActivity">
 
+    <!-- Sets the background of the layout. Sets the background color
+  to light purple-->
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="#c0c0c0"
         android:id="@+id/divider" />
 
+<!-- listview for a scrollable layout-->
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_below="@+id/divider" />
 
+<!-- button for selling-->
     <Button
         style="?android:attr/buttonStyleSmall"
         android:textColor="#ffffff"
