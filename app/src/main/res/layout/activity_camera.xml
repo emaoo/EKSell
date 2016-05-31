@@ -79,7 +79,7 @@ items are placed relative to the other items around it-->
     <Button
         android:layout_width="80dp"
         android:layout_height="35dp"
-        android:text="Send"
+        android:text="Post"
         android:id="@+id/submitButton"
         android:layout_below="@+id/editTextItemDescription"
         android:layout_gravity="center_vertical|center_horizontal"
