@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  *
  * @author Sources: None
  */
-public class ValidatorTest {
+public class TestValidatorTest {
     /**
      * Test for the isNameValid method in the TestValidator class
      *
