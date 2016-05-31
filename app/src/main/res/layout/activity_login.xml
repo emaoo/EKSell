@@ -1,3 +1,6 @@
+<!-- This is the layout for the Login Activity. It uses LinearLayout.
+ LinearLayout is a view group that aligns
+ all children in a single direction, vertically or horizontally.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +11,7 @@
     android:baselineAligned="true"
     tools:context=".LoginActivity"
     >
-
+<!--the logo for the login page-->
     <ImageView
         android:layout_width="181dp"
         android:layout_height="106dp"
@@ -19,6 +22,7 @@
         android:layout_marginRight="2dp"
         android:layout_weight="0.07" />
 
+    <!-- allows the user to put in their email-->
     <EditText
         android:hint=" Email"
         android:layout_width="match_parent"
@@ -33,6 +37,7 @@
         android:layout_marginRight="25dp"
         android:background="#ffffff" />
 
+    <!--allows the user to put in their password-->
     <EditText
         android:hint=" Password"
         android:layout_width="match_parent"
@@ -48,6 +53,7 @@
         android:backgroundTint="@android:color/white"
         android:background="#ffffff" />
 
+    <!--Button for loggin in-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,6 +70,7 @@
         android:textSize="18dp"
         android:layout_weight="0.01" />
 
+    <!--Button for Registering if user doesn't have an account yet-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
