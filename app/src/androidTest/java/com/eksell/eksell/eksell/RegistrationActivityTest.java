@@ -7,6 +7,14 @@ import com.robotium.solo.Solo;
 
 /**
  * Instrumentation Testing for the Registration Activity class
+ * 
+ * @author Eileen Mao
+ * @version May 30, 2016
+ * 
+ * @author Period - 3
+ * @author Assignment - EKSell
+ * 
+ * @author Sources - Android Developers API
  */
 public class RegistrationActivityTest extends ActivityInstrumentationTestCase2<RegistrationActivity> {
     /**
