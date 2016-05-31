@@ -76,7 +76,7 @@ public class OrderActivity  extends AppCompatActivity {
                     sendEmailAsync();
 
                     Toast.makeText(OrderActivity.this,
-                            "we have send a message to the seller about your order. Thanks! ",
+                            "Message sent, thanks for your purchase!",
                             Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent (OrderActivity.this, ItemListingActivity.class);
