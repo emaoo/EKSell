@@ -1,3 +1,5 @@
+<!--This is the layout for the Camera Activity. This is a relative layout which means that
+items are placed relative to the other items around it-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -5,17 +7,19 @@
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:paddingTop="12dp"
-
     android:baselineAligned="true"
     android:background="#bfb9c2"
     tools:context=".CameraActivity">
 
+    <!-- Sets the background of the layout. Sets the background color
+    to light purple-->
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="#c0c0c0"
         android:id="@+id/divider" />
 
+    <!--shows the image that was taken with the camera-->
     <ImageView
         android:layout_width="2800dp"
         android:layout_height="230dp"
@@ -25,6 +29,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <!-- allows user to enter item name-->
     <EditText
         android:hint="Item Name"
         android:layout_width="match_parent"
@@ -39,6 +44,7 @@
         android:textColor="#FF5F446E"
         android:background="#ffffff" />
 
+<!--allows user to enter item price-->
     <EditText
         android:hint="Price"
         android:layout_width="match_parent"
@@ -53,6 +59,7 @@
         android:textColor="#FF5F446E"
         android:background="#ffffff" />
 
+    <!-- allows user to enter item description-->
     <EditText
         android:hint="Item Description (Don't forget to add a size if you are selling clothes!)"
         android:layout_width="match_parent"
@@ -68,6 +75,7 @@
         android:textColor="#FF5F446E"
         android:background="#ffffff"/>
 
+    <!--button to click to sent the email-->
     <Button
         android:layout_width="80dp"
         android:layout_height="35dp"
