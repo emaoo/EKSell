@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This is the layout for Email Activity. It uses LinearLayout.
+ LinearLayout is a view group that aligns
+ all children in a single direction, vertically or horizontally.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,8 +10,9 @@
     android:weightSum="1"
     android:background="#bfb9c2"
     android:baselineAligned="true"
-    tools:context=".OrderActivity">
+    tools:context=".EmailActivity">
 
+    <!-- allows you to enter an e-mail subject-->
     <EditText
         android:hint=" Subject"
         android:layout_width="match_parent"
@@ -23,6 +27,7 @@
         android:layout_marginRight="25dp"
         android:background="#ffffff" />
 
+    <!-- allows you to write the e-mail0-->
     <EditText
         android:hint="This should be used to set a meeting time and place to exchange the item and money.
         Any price negotiations should also be done over email. Lastly, please leave your contact info here."
@@ -38,7 +43,7 @@
         android:textColor="#FF5F446E"
         android:background="#ffffff"/>
 
-
+    <!--button for sending the email-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
