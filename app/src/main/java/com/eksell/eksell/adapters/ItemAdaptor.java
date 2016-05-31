@@ -105,7 +105,7 @@ public class ItemAdaptor extends ArrayAdapter<Item> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),
-                        "Please fill your detail question in the fields. Thanks! ",
+                        "Please fill the message out in detail! ",
                         Toast.LENGTH_LONG).show();
 
                 Intent showOrderIntent = new Intent( getContext(), OrderActivity.class );
